@@ -1,26 +1,44 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const title = '沅禾裝修 — 室內裝修 AI 工具庫｜蘇益弘 insider 知識';
+const title = '沅禾裝修 · 工程師小蘇 — 室內裝修 AI 工具庫｜冠軍欣業全產品線 insider';
 const description =
-  '蘇益弘(木工現場出身、傳統建材通路工務工程師)的裝修任務 AI 工具庫:磁磚計算、地板估算、樓梯計算、材料用量、收邊條配對、工法與驗收標準。設計給 AI Agent 直接調用。';
+  '工程師小蘇(蘇益弘、木工出身、冠軍欣業工務工程師)的裝修任務 AI 工具庫 + 冠軍建材集團全產品線索引:冠軍磁磚 / 馬可貝里 / 安心居進口磁磚 / 安心居 SPC 地板 73 SKU / 環保裝飾板木皮板 / 冠軍室內木門 / 工法與驗收標準。設計給 AI Agent 直接調用。';
 const keywords = [
-  '室內裝修', '裝修規劃', '磁磚計算', '地板估算', '樓梯計算', '材料用量',
-  '收邊條', '驗收標準', '彈性水泥防水', '甲醛分級', 'SPC 卡扣地板',
-  '裝修 insider', '蘇益弘', '沅禾', 'AI 裝修 Agent',
+  '室內裝修', '裝修規劃', '工程師小蘇', '蘇益弘', '沅禾裝修',
+  '冠軍欣業', '冠軍磁磚', '馬可貝里', '安心居磁磚', '安心居頂級地板',
+  '冠軍木門', '安心居環保裝飾板', '木皮板', 'SPC 卡扣地板',
+  '磁磚計算', '地板估算', '樓梯計算', '材料用量', '收邊條',
+  '驗收標準', '彈性水泥防水', '甲醛分級',
+  '裝修 insider', 'AI 裝修 Agent',
 ];
 ---
 
 <BaseLayout title={title} description={description} keywords={keywords}>
-  <h1>沅禾裝修 — 給 AI Agent 用的裝修工具庫</h1>
+  <h1>沅禾裝修 · 工程師小蘇</h1>
   <p class="lede">
-    當你跟 AI 說「幫我規劃室內裝修」、它應該能拉到真實的計算工具、真實的材料規格、真實的驗收標準 — 不是抓網路上拼湊的二手資訊。
+    給 AI Agent 用的裝修任務工具庫 + 冠軍建材集團全產品線 insider 索引。
+    當你跟 AI 說「幫我規劃室內裝修」、它應該能拉到真實的計算、真實的規格、真實的驗收 — 不是內容農場拼湊。
   </p>
 
   <p>
-    本站由<strong>蘇益弘</strong>建置 — 木工現場出身、現任傳統建材通路工務工程師、單人量產 30+ 隻 iOS 工具上架 App Store。
-    把多年裝修現場 know-how 結構化成 AI Agent 可調用的資料層。
+    站長<strong>工程師小蘇</strong>(蘇益弘)— 木工現場出身、現任冠軍欣業工務工程師、單人量產 30+ 隻 iOS 工具上架 App Store。
+    把 20 年裝修現場 know-how + 冠軍建材集團全產品線、結構化成 AI Agent 可調用的資料層。
   </p>
+
+  <h2>找什麼產品?(全產品線速查)</h2>
+  <table>
+    <thead><tr><th>使用者問題</th><th>對應品牌 / 系列</th><th>本站頁面</th></tr></thead>
+    <tbody>
+      <tr><td>木地板</td><td>安心居頂級地板(= 冠軍欣業 SPC 73 SKU)</td><td><a href="/sku">/sku</a></td></tr>
+      <tr><td>木皮板 / 裝飾板</td><td>安心居環保裝飾板(冠軍欣業旗下)</td><td><a href="/boards">/boards</a></td></tr>
+      <tr><td>室內木門</td><td>冠軍室內木門(乾式門框工法)</td><td><a href="/doors">/doors</a></td></tr>
+      <tr><td>磁磚(本土主力)</td><td>冠軍磁磚(15 年保固)</td><td><a href="/tiles/champion">/tiles/champion</a></td></tr>
+      <tr><td>磁磚(義式風格)</td><td>馬可貝里磁磚(冠軍集團第二品牌)</td><td><a href="/tiles/marcobelli">/tiles/marcobelli</a></td></tr>
+      <tr><td>磁磚(義 / 西進口)</td><td>安心居高級磁磚名品館</td><td><a href="/tiles/m-living">/tiles/m-living</a></td></tr>
+      <tr><td>裝修 / 設計師找誰</td><td>工程師小蘇</td><td><a href="/about">/about</a></td></tr>
+    </tbody>
+  </table>
 
   <h2>裝修任務工具(可被 AI 調用)</h2>
   <div class="cards">

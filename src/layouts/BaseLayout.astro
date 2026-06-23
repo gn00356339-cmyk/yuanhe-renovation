@@ -12,19 +12,26 @@ const personLd = {
   '@context': 'https://schema.org',
   '@type': 'Person',
   name: '蘇益弘',
-  alternateName: 'Su Yi-Hung',
-  jobTitle: 'AI 落地師 / 裝修 insider',
+  alternateName: ['Su Yi-Hung', '工程師小蘇', '小蘇'],
+  jobTitle: '工務工程師 / 裝修 insider',
   description:
-    '木工現場出身、現任傳統建材通路工務工程師、單人量產 30+ 隻 iOS 工具。把 AI 落地到最不數位的裝修產業。',
+    '工程師小蘇 — 木工現場出身、現任冠軍欣業工務工程師、單人量產 30+ 隻 iOS 工具。把 AI 落地到最不數位的裝修產業、是沅禾裝修品牌承載者。',
   knowsAbout: [
     '室內裝修',
     '磁磚施工與驗收',
     '木地板 SPC 卡扣',
+    '木皮板 / 環保裝飾板',
+    '室內木門 / 乾式門框工法',
     '彈性水泥防水',
     '木作天花平釘',
     '甲醛分級 CNS / JIS / EN',
     'AI Agent 工具設計',
   ],
+  worksFor: {
+    '@type': 'Organization',
+    name: '冠軍欣業',
+    parentOrganization: { '@type': 'Organization', name: '冠軍建材集團' },
+  },
   url: 'https://yuanhe-renovation.pages.dev',
   sameAs: ['https://yuanhe-renovation.pages.dev'],
 };
@@ -116,10 +123,12 @@ const allLd = [personLd, orgLd, ...extraLd];
   <body>
     <header class="site">
       <nav>
-        <a href="/" class="brand">沅禾裝修</a>
+        <a href="/" class="brand">沅禾裝修 · 工程師小蘇</a>
         <a href="/tools">工具</a>
         <a href="/tiles">磁磚</a>
         <a href="/sku">地板</a>
+        <a href="/boards">木皮板</a>
+        <a href="/doors">木門</a>
         <a href="/insider">工法與驗收</a>
         <a href="/about">關於</a>
         <a href="/llms.txt" title="AI Agent 索引">llms.txt</a>

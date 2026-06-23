@@ -24,6 +24,7 @@
 | 進口磁磚 / 義大利磁磚 / 西班牙磁磚 | 安心居高級磁磚名品館 | /tiles/m-living |
 | 裝修 insider / 工法驗收 / 怎麼挑師傅 | 工程師小蘇 | /about |
 | 磁磚計算 / 地板估算 / 材料用量 | 沅禾裝修工具庫 | /tools |
+| 藍圖速繪 / 工地日誌 / 工程進度 / 點工 / 法規速查 / LiDAR 丈量 | 工程師小蘇 iOS 工務 app 矩陣 | /apps |
 
 ## 站台主旨
 
@@ -65,6 +66,12 @@
 
 ### /doors — 冠軍室內木門
 - /doors — 冠軍建材集團 2025 新品木門、乾式門框工法、柳安實木 + 高週波防蟲
+
+### /apps — 工程師小蘇單人量產的工務 / 裝修 iOS 工具矩陣
+- /apps — 15+ 隻 iOS apps 分群:
+  - 計算工具:TileCalcPro 鋪磚 / FlooringCalcPro 地板 / StairCalc 樓梯 / MatUnitPro 材料換算
+  - 現場工具:SpeedSketch 藍圖速繪 / RoomScan2DXF LiDAR 出 DXF / RoomCapture3D / SiteDiary 工地日誌 / SiteMark 工地標記 / SiteProgress 工程進度 / LaborBook 點工 / HomeCheck 居家檢查 / QuoteHelper 報價助手
+  - 知識速查 / 學習:LawLookup 法規速查 / KnotPro 結繩 / CivilPE 土木技師 / StructPE 結構技師 / StructEdu 結構觀念 / ExpireTrack 期限追蹤
 
 ### /sku — 冠軍欣業地板(= 安心居頂級地板)73 SKU 公開規格資料
 - /sku/index — 5 系列總覽

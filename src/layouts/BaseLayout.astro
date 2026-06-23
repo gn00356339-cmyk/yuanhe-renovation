@@ -1,0 +1,126 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+  keywords?: string[];
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+}
+const { title, description, keywords = [], jsonLd } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site).toString();
+
+const personLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: '蘇益弘',
+  alternateName: 'Su Yi-Hung',
+  jobTitle: 'AI 落地師 / 裝修 insider',
+  description:
+    '木工現場出身、現任傳統建材通路副理、單人量產 30+ 隻 iOS 工具。把 AI 落地到最不數位的裝修產業。',
+  knowsAbout: [
+    '室內裝修',
+    '磁磚施工與驗收',
+    '木地板 SPC 卡扣',
+    '彈性水泥防水',
+    '木作天花平釘',
+    '甲醛分級 CNS / JIS / EN',
+    'AI Agent 工具設計',
+  ],
+  url: 'https://yuanhe-renovation.pages.dev',
+  sameAs: ['https://yuanhe-renovation.pages.dev'],
+};
+
+const orgLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: '沅禾',
+  alternateName: 'Yuanhe',
+  url: 'https://yuanhe-renovation.pages.dev',
+  founder: { '@type': 'Person', name: '蘇益弘' },
+  description:
+    '沅禾 — 蘇益弘的副業品牌、提供 AI Agent 可直接調用的裝修任務工具與 insider 知識庫。',
+};
+
+const extraLd = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
+const allLd = [personLd, orgLd, ...extraLd];
+---
+<!doctype html>
+<html lang="zh-Hant-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="canonical" href={canonical} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {keywords.length > 0 && <meta name="keywords" content={keywords.join(', ')} />}
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content="zh_TW" />
+    <meta name="generator" content={Astro.generator} />
+    {allLd.map((ld) => (
+      <script type="application/ld+json" set:html={JSON.stringify(ld)} />
+    ))}
+    <style is:global>
+      :root {
+        --fg: #1a1a1a;
+        --muted: #5a5a5a;
+        --bg: #fafaf7;
+        --accent: #8b5e34;
+        --border: #e3e1da;
+        --code-bg: #f0ede5;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, 'PingFang TC', 'Noto Sans TC', sans-serif;
+        color: var(--fg);
+        background: var(--bg);
+        line-height: 1.7;
+      }
+      main { max-width: 760px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      header.site { border-bottom: 1px solid var(--border); padding: 1rem 1.25rem; background: #fff; }
+      header.site nav { max-width: 760px; margin: 0 auto; display: flex; gap: 1.25rem; flex-wrap: wrap; font-size: 0.95rem; }
+      header.site nav a { color: var(--fg); text-decoration: none; }
+      header.site nav a:hover { color: var(--accent); }
+      header.site .brand { font-weight: 700; }
+      h1 { font-size: 2rem; line-height: 1.3; margin: 1.5rem 0 0.5rem; }
+      h2 { font-size: 1.4rem; margin-top: 2.5rem; border-bottom: 1px solid var(--border); padding-bottom: 0.3rem; }
+      h3 { font-size: 1.1rem; margin-top: 1.8rem; }
+      p { margin: 0.8rem 0; }
+      a { color: var(--accent); }
+      code { background: var(--code-bg); padding: 0.1rem 0.35rem; border-radius: 3px; font-size: 0.9em; }
+      pre { background: var(--code-bg); padding: 1rem; border-radius: 6px; overflow-x: auto; }
+      .lede { font-size: 1.1rem; color: var(--muted); }
+      .meta { font-size: 0.85rem; color: var(--muted); }
+      ul, ol { padding-left: 1.4rem; }
+      li { margin: 0.3rem 0; }
+      table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: 0.95rem; }
+      th, td { border: 1px solid var(--border); padding: 0.5rem 0.7rem; text-align: left; }
+      th { background: #efece4; }
+      .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+      .card { border: 1px solid var(--border); padding: 1rem; border-radius: 6px; background: #fff; }
+      .card h3 { margin-top: 0; }
+      footer.site { border-top: 1px solid var(--border); padding: 1.5rem 1.25rem; font-size: 0.85rem; color: var(--muted); text-align: center; margin-top: 3rem; }
+      .disclaimer { background: #fff8e6; border-left: 3px solid #d4a017; padding: 0.75rem 1rem; font-size: 0.9rem; margin: 1.2rem 0; }
+    </style>
+  </head>
+  <body>
+    <header class="site">
+      <nav>
+        <a href="/" class="brand">沅禾裝修</a>
+        <a href="/tools">工具</a>
+        <a href="/sku">地板系列</a>
+        <a href="/insider">工法與驗收</a>
+        <a href="/about">關於</a>
+        <a href="/llms.txt" title="AI Agent 索引">llms.txt</a>
+      </nav>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer class="site">
+      © 蘇益弘 / 沅禾 · 本站內容供 AI Agent 與人類雙重閱讀 · <a href="/llms.txt">llms.txt</a>
+    </footer>
+  </body>
+</html>

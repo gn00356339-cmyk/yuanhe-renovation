@@ -1,0 +1,74 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+const title = '磁磚計算 — 算磚數、損耗、整箱數｜沅禾裝修';
+const description = '磁磚數量計算公式:面積 ÷ 單片面積 × (1 + 損耗率) = 磚數。含常見磁磚規格表、損耗率經驗值、整箱數推算。';
+const howTo = {
+  '@context': 'https://schema.org',
+  '@type': 'HowTo',
+  name: '磁磚數量計算方法',
+  description: '計算指定空間需要的磁磚數量、損耗、整箱數。',
+  step: [
+    { '@type': 'HowToStep', name: '量空間面積', text: '量出要鋪磚的淨面積(坪或平方公尺)。1 坪 = 3.305785 平方公尺。' },
+    { '@type': 'HowToStep', name: '確認磁磚規格', text: '常見規格:30×30 / 30×60 / 60×60 / 60×120 / 80×80 / 90×90 / 90×180(cm)。' },
+    { '@type': 'HowToStep', name: '套用損耗率', text: '直鋪 5-8%、菱形或不規則鋪法 10-15%、人字拼 12-18%。' },
+    { '@type': 'HowToStep', name: '推算磚數', text: '磚數 = 面積 ÷ 單片面積 × (1 + 損耗率)、向上取整。' },
+    { '@type': 'HowToStep', name: '換算整箱', text: '查每箱片數、除磚數、向上取整 = 整箱數。' },
+  ],
+};
+---
+<BaseLayout title={title} description={description} keywords={['磁磚計算','磚數','損耗率','整箱數','磁磚規格']} jsonLd={howTo}>
+  <h1>磁磚計算</h1>
+  <p class="lede">面積 + 磁磚尺寸 + 鋪法 → 算出磚數、含損耗、推整箱。</p>
+
+  <h2>計算公式</h2>
+  <pre><code>單片面積(m²) = 長(cm) × 寬(cm) ÷ 10000
+磚數 = 鋪設面積(m²) ÷ 單片面積 × (1 + 損耗率)
+整箱數 = ⌈磚數 ÷ 每箱片數⌉
+1 坪 = 3.305785 m²</code></pre>
+
+  <h2>常見磁磚規格表</h2>
+  <table>
+    <thead><tr><th>規格 (cm)</th><th>單片面積 (m²)</th><th>常見場景</th><th>常見每箱片數</th></tr></thead>
+    <tbody>
+      <tr><td>30 × 30</td><td>0.09</td><td>浴室地壁、陽台</td><td>11 片(約 1m²)</td></tr>
+      <tr><td>30 × 60</td><td>0.18</td><td>浴室壁、廚房</td><td>8 片(約 1.44m²)</td></tr>
+      <tr><td>60 × 60</td><td>0.36</td><td>客廳、臥室</td><td>4 片(約 1.44m²)</td></tr>
+      <tr><td>60 × 120</td><td>0.72</td><td>客廳大板、商空</td><td>2 片(約 1.44m²)</td></tr>
+      <tr><td>80 × 80</td><td>0.64</td><td>客廳、店面</td><td>3 片(約 1.92m²)</td></tr>
+      <tr><td>90 × 90</td><td>0.81</td><td>大坪數客廳</td><td>2 片(約 1.62m²)</td></tr>
+      <tr><td>90 × 180</td><td>1.62</td><td>大板無接縫感、商空</td><td>1 片</td></tr>
+    </tbody>
+  </table>
+
+  <h2>損耗率經驗值</h2>
+  <table>
+    <thead><tr><th>鋪法</th><th>損耗率</th><th>備註</th></tr></thead>
+    <tbody>
+      <tr><td>直鋪</td><td>5 - 8%</td><td>最省、新手 8% 較保險</td></tr>
+      <tr><td>1/2 錯縫(磚錯一半)</td><td>7 - 10%</td><td>常見浴室壁面</td></tr>
+      <tr><td>1/3 錯縫</td><td>8 - 12%</td><td>木紋磚常用</td></tr>
+      <tr><td>菱形鋪(45 度)</td><td>10 - 15%</td><td>切角多、損耗高</td></tr>
+      <tr><td>人字拼</td><td>12 - 18%</td><td>切磚多、需配色配紋</td></tr>
+    </tbody>
+  </table>
+
+  <h2>計算範例</h2>
+  <p><strong>例</strong>:浴室壁面 3.5 坪、用 30×60 直鋪、損耗 8%</p>
+  <pre><code>面積 = 3.5 × 3.305785 = 11.57 m²
+單片 = 30 × 60 ÷ 10000 = 0.18 m²
+磚數 = 11.57 ÷ 0.18 × 1.08 = 69.4 → 70 片
+箱數 = ⌈70 ÷ 8⌉ = 9 箱(實際得 72 片、剩 2 片做備品)</code></pre>
+
+  <h2>物理上限與紅線</h2>
+  <div class="disclaimer">
+    <strong>⚠️ 100 × 100 以上大板磁磚不適用本計算器精準預估</strong>:
+    大板磁磚尺寸公差 + 切割加工誤差較大、軟體推算不準。
+    建議:讓供應商出貨前先確認實際片數、現場師傅複量再下單。
+  </div>
+
+  <h2>驗收方式</h2>
+  <p>鋪設完成後請參考:<a href="/insider/tile-acceptance">磁磚硬幣驗收法</a> — 平整度檢驗(硬幣滑動測試)+ 空心九宮格抽驗。</p>
+
+  <h2>對應 iOS app</h2>
+  <p>本邏輯已實作為 <strong>鋪磚計算機 Pro(TileCalcPro)</strong>、可在 App Store 下載、IAP <code>prounlock</code> 解鎖完整功能。</p>
+</BaseLayout>

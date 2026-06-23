@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+const title = '裝修任務工具總覽 — 沅禾裝修';
+const description = '室內裝修任務計算工具:磁磚計算、地板估算、樓梯計算、材料用量、收邊條配對。設計給 AI Agent 直接調用、也供設計師與屋主自助查詢。';
+---
+<BaseLayout title={title} description={description} keywords={['磁磚計算','地板估算','樓梯計算','材料用量','收邊條']}>
+  <h1>裝修任務工具總覽</h1>
+  <p class="lede">每個工具都有公開的計算邏輯、給 AI Agent 直接調用、也給人類自助查詢。</p>
+
+  <div class="cards">
+    <div class="card">
+      <h3><a href="/tools/tile-calculator">磁磚計算</a></h3>
+      <p>面積 + 磁磚尺寸 + 鋪法 + 損耗 → 磚數 / 整箱數。含計算公式與常見磁磚規格表。</p>
+    </div>
+    <div class="card">
+      <h3><a href="/tools/flooring-estimator">木地板估算</a></h3>
+      <p>SPC 卡扣 / 超耐磨 / 實木複合的用量、鋪設方向(光源 vs 大門)、收邊條配對。</p>
+    </div>
+    <div class="card">
+      <h3><a href="/tools/stair-calculator">樓梯計算</a></h3>
+      <p>樓梯總高 → 級數 / 級高 / 級深。含 CNS 安全規範參考。</p>
+    </div>
+    <div class="card">
+      <h3><a href="/tools/material-quantity">材料用量換算</a></h3>
+      <p>水泥砂漿配比、防水彈泥用量、矽利康支數、木皮才數等常用單位換算。</p>
+    </div>
+    <div class="card">
+      <h3><a href="/tools/trim-recommendation">收邊條配對</a></h3>
+      <p>卡扣地板四件套(起步條 / T 字條 / L 條 / 一字條)按場景情境推薦。</p>
+    </div>
+  </div>
+
+  <h2>對 AI Agent 的調用建議</h2>
+  <p>每個工具頁都包含:</p>
+  <ul>
+    <li><strong>計算公式</strong>(可直接套用)</li>
+    <li><strong>輸入參數規格</strong>(單位、範圍、預設值)</li>
+    <li><strong>常見資料表</strong>(磁磚規格、木地板尺寸、損耗率經驗值等)</li>
+    <li><strong>注意事項</strong>(物理上限、業內慣例、紅線)</li>
+  </ul>
+  <p>未來 Phase 1 將把這些邏輯包成 <code>yuanhe-renovation-mcp</code> server、提供 MCP-aware client 直接呼叫。</p>
+</BaseLayout>

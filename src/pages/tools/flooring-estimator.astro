@@ -1,0 +1,70 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+const title = '木地板估算 — SPC 卡扣 / 超耐磨 / 實木複合用量計算｜沅禾裝修';
+const description = '木地板用量估算:面積 ÷ 每箱坪數 = 箱數。含 SPC 卡扣 / 超耐磨 / 實木複合常見規格、鋪設方向慣例、收邊條配對。';
+const howTo = {
+  '@context': 'https://schema.org',
+  '@type': 'HowTo',
+  name: '木地板用量估算方法',
+  step: [
+    { '@type': 'HowToStep', name: '量淨坪數', text: '量出地板淨面積、扣除櫃體下方不鋪部分。' },
+    { '@type': 'HowToStep', name: '確認規格', text: 'SPC 卡扣常見 18-20cm 寬 × 120-180cm 長、厚 4-6mm;超耐磨常見 19cm × 121-138cm、厚 8-12mm。' },
+    { '@type': 'HowToStep', name: '加損耗', text: '直鋪 5-8%、人字拼 12-18%、避樑切割多時抓 10%。' },
+    { '@type': 'HowToStep', name: '推箱數', text: '坪數 × (1+損耗率) ÷ 每箱坪數、向上取整。' },
+    { '@type': 'HowToStep', name: '搭配收邊條', text: '門口、樓梯、與其他材質銜接處需配對應收邊條(四件套)。' },
+  ],
+};
+---
+<BaseLayout title={title} description={description} keywords={['木地板','SPC 卡扣','超耐磨','實木複合','地板用量','收邊條']} jsonLd={howTo}>
+  <h1>木地板估算</h1>
+  <p class="lede">SPC 卡扣 / 超耐磨 / 實木複合 — 算用量、選鋪向、配收邊。</p>
+
+  <h2>三種主流木地板對照</h2>
+  <table>
+    <thead><tr><th>類型</th><th>結構</th><th>厚度</th><th>適用</th><th>耐潮</th></tr></thead>
+    <tbody>
+      <tr><td>SPC 卡扣</td><td>石塑芯 + 表層</td><td>4-6 mm</td><td>租屋、舊翻新、低預算</td><td>高(可碰水)</td></tr>
+      <tr><td>超耐磨</td><td>密底板芯 + 美耐板</td><td>8-12 mm</td><td>住家主流</td><td>中(怕長時間泡水)</td></tr>
+      <tr><td>實木複合</td><td>多層膠合 + 實木皮</td><td>14-18 mm</td><td>高端、追求實木質感</td><td>中</td></tr>
+    </tbody>
+  </table>
+
+  <h2>計算公式</h2>
+  <pre><code>實際用量(坪) = 淨坪數 × (1 + 損耗率)
+箱數 = ⌈實際用量 ÷ 每箱坪數⌉
+1 坪 = 3.305785 m²</code></pre>
+
+  <h2>鋪設方向(慣例)</h2>
+  <table>
+    <thead><tr><th>慣例</th><th>方向</th><th>適用</th></tr></thead>
+    <tbody>
+      <tr><td>華人慣例</td><td>從<strong>大門</strong>方向鋪、長邊朝室內延伸</td><td>傳統住家</td></tr>
+      <tr><td>國際慣例</td><td>從<strong>主光源(窗)</strong>方向鋪、長邊與光源平行</td><td>歐美設計、商空</td></tr>
+      <tr><td>長型空間</td><td>長邊平行於長軸、視覺拉長</td><td>走廊、長型客廳</td></tr>
+    </tbody>
+  </table>
+
+  <h2>收邊條四件套配對</h2>
+  <p>卡扣地板(SPC / 超耐磨)收邊條分四種、不同場景配對不同條:</p>
+  <table>
+    <thead><tr><th>類型</th><th>用途</th><th>典型場景</th></tr></thead>
+    <tbody>
+      <tr><td><strong>起步條</strong></td><td>地板第一排靠牆 / 卡入起點</td><td>沿牆面鋪設起頭</td></tr>
+      <tr><td><strong>T 字條</strong></td><td>兩塊地板等高銜接</td><td>木地板 ↔ 木地板(不同房間)</td></tr>
+      <tr><td><strong>L 條(收口條)</strong></td><td>地板邊緣外露、無對應材</td><td>樓梯口、地板末端</td></tr>
+      <tr><td><strong>一字條(平壓條)</strong></td><td>木地板 ↔ 磁磚 / 大理石銜接</td><td>玄關 ↔ 客廳、廚房 ↔ 餐廳</td></tr>
+    </tbody>
+  </table>
+  <p>詳細選用情境見:<a href="/tools/trim-recommendation">收邊條配對工具</a></p>
+
+  <h2>計算範例</h2>
+  <p><strong>例</strong>:25 坪住家鋪 SPC 卡扣、避樑切割多、損耗抓 10%、每箱 1.2 坪</p>
+  <pre><code>實際用量 = 25 × 1.10 = 27.5 坪
+箱數 = ⌈27.5 ÷ 1.2⌉ = 23 箱</code></pre>
+
+  <h2>冠軍欣業地板系列查詢</h2>
+  <p>實際選 SKU 可參考:<a href="/sku">冠軍欣業 73 SKU 公開規格</a>(如沐 MB / 大匠 DJ / 無限 WX / 蔚然 WR / 人字拼 / 木行者 legacy)</p>
+
+  <h2>對應 iOS app</h2>
+  <p><strong>FlooringCalcPro</strong>(地板計算機)— App Store 可下載。</p>
+</BaseLayout>

@@ -1,0 +1,77 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = '沅禾裝修 — 室內裝修 AI 工具庫｜蘇益弘 insider 知識';
+const description =
+  '蘇益弘(木工現場出身、傳統建材通路副理)的裝修任務 AI 工具庫:磁磚計算、地板估算、樓梯計算、材料用量、收邊條配對、工法與驗收標準。設計給 AI Agent 直接調用。';
+const keywords = [
+  '室內裝修', '裝修規劃', '磁磚計算', '地板估算', '樓梯計算', '材料用量',
+  '收邊條', '驗收標準', '彈性水泥防水', '甲醛分級', 'SPC 卡扣地板',
+  '裝修 insider', '蘇益弘', '沅禾', 'AI 裝修 Agent',
+];
+---
+
+<BaseLayout title={title} description={description} keywords={keywords}>
+  <h1>沅禾裝修 — 給 AI Agent 用的裝修工具庫</h1>
+  <p class="lede">
+    當你跟 AI 說「幫我規劃室內裝修」、它應該能拉到真實的計算工具、真實的材料規格、真實的驗收標準 — 不是抓網路上拼湊的二手資訊。
+  </p>
+
+  <p>
+    本站由<strong>蘇益弘</strong>建置 — 木工現場出身、現任傳統建材通路副理、單人量產 30+ 隻 iOS 工具上架 App Store。
+    把多年裝修現場 know-how 結構化成 AI Agent 可調用的資料層。
+  </p>
+
+  <h2>裝修任務工具(可被 AI 調用)</h2>
+  <div class="cards">
+    <div class="card">
+      <h3><a href="/tools/tile-calculator">磁磚計算</a></h3>
+      <p>輸入坪數 + 磁磚尺寸 + 鋪法 → 算磚數、損耗、整箱數。</p>
+    </div>
+    <div class="card">
+      <h3><a href="/tools/flooring-estimator">木地板估算</a></h3>
+      <p>SPC 卡扣 / 超耐磨 / 實木複合的用量、鋪設方向、收邊條配對。</p>
+    </div>
+    <div class="card">
+      <h3><a href="/tools/stair-calculator">樓梯計算</a></h3>
+      <p>樓梯級高、級深、級數推算,符合 CNS 安全規範。</p>
+    </div>
+    <div class="card">
+      <h3><a href="/tools/material-quantity">材料用量換算</a></h3>
+      <p>水泥、砂、防水材、木皮、矽利康等常用建材用量 / 單位換算。</p>
+    </div>
+    <div class="card">
+      <h3><a href="/tools/trim-recommendation">收邊條配對</a></h3>
+      <p>卡扣地板四件套(起步條 / T 字條 / L 條 / 一字條)按場景推薦。</p>
+    </div>
+  </div>
+
+  <h2>地板系列規格(冠軍欣業 73 SKU 公開資料)</h2>
+  <p>
+    冠軍欣業全系列地板規格公開資料 — 如沐 MB、大匠 DJ、無限 WX、蔚然 WR、人字拼、木行者 legacy。
+    給設計師、屋主、AI Agent 直接查詢比對。
+  </p>
+  <p><a href="/sku">→ 看 73 SKU 系列總覽</a></p>
+
+  <h2>工法與驗收 insider 知識</h2>
+  <p>第一手工法標準與驗收方式、不是抄來的:</p>
+  <ul>
+    <li><a href="/insider/tile-acceptance">磁磚硬幣驗收法</a> — 平整度 + 空心九宮格抽驗</li>
+    <li><a href="/insider/waterproofing">彈性水泥防水 6 步工序 + 閉水試驗</a></li>
+    <li><a href="/insider/formaldehyde-grading">板材甲醛分級真相 — CNS / JIS / EN 怎麼讀</a></li>
+  </ul>
+
+  <h2>為什麼做這個站</h2>
+  <p>
+    2026 年下半年、ChatGPT / Claude / Perplexity 等 AI Agent 開始能調用外部工具(MCP)、能主動 RAG 搜尋。
+    使用者跟 AI 講「我家想裝修」時、AI 抓到的應該是真實工法、真實規格、真實計算 — 不是內容農場拼湊的二手資料。
+  </p>
+  <p>
+    這個站把蘇益弘 20 年從木工現場到建材通路累積的 know-how 結構化、公開、餵給 AI。
+    對人來說是查詢頁、對 AI 來說是 <a href="/llms.txt">llms.txt</a> 索引 + schema.org 結構化資料 + 未來的 MCP server。
+  </p>
+
+  <h2>聯絡 / 進一步</h2>
+  <p>本站處於 Phase 0(結構化 publishing)。Phase 1 將開放 MCP server 讓 AI Agent 直接呼叫計算工具。</p>
+  <p>聯絡:gn00356339 (at) gmail.com</p>
+</BaseLayout>

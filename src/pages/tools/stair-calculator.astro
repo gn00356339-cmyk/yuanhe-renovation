@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+const title = '樓梯計算 — 級高 / 級深 / 級數推算｜沅禾裝修';
+const description = '樓梯總高 → 級數、級高、級深推算。含 CNS / 建築技術規則安全規範參考。';
+const howTo = {
+  '@context': 'https://schema.org',
+  '@type': 'HowTo',
+  name: '樓梯級數與級高計算',
+  step: [
+    { '@type': 'HowToStep', name: '量總高', text: '量出樓層完成面到下一樓層完成面的垂直高度(cm)。' },
+    { '@type': 'HowToStep', name: '估級數', text: '級數 = 總高 ÷ 預估級高(16-18cm 常用)、四捨五入取整。' },
+    { '@type': 'HowToStep', name: '算級高', text: '實際級高 = 總高 ÷ 級數。' },
+    { '@type': 'HowToStep', name: '配級深', text: '級深通常 24-28cm、依跨距與規範調整。' },
+    { '@type': 'HowToStep', name: '驗 2R+T 公式', text: '舒適度檢驗:2 × 級高 + 級深 ≈ 60-64cm 為佳。' },
+  ],
+};
+---
+<BaseLayout title={title} description={description} keywords={['樓梯計算','級高','級深','樓梯安全規範','CNS']} jsonLd={howTo}>
+  <h1>樓梯計算</h1>
+  <p class="lede">樓梯總高 → 級數、級高、級深 — 含 CNS 安全規範。</p>
+
+  <h2>計算公式</h2>
+  <pre><code>級數 N = ⌈總高 ÷ 預估級高⌉(預估級高常用 17 cm)
+實際級高 = 總高 ÷ N
+舒適度檢驗:2 × 級高 + 級深 ≈ 60-64 cm</code></pre>
+
+  <h2>台灣建築技術規則樓梯規範(住宅)</h2>
+  <table>
+    <thead><tr><th>項目</th><th>住宅</th><th>備註</th></tr></thead>
+    <tbody>
+      <tr><td>梯級高(R)</td><td>≤ 20 cm</td><td>常用 16-18 cm 最舒適</td></tr>
+      <tr><td>梯級深(T)</td><td>≥ 21 cm</td><td>常用 24-28 cm</td></tr>
+      <tr><td>淨寬</td><td>≥ 75 cm</td><td>公寓常見 90-110 cm</td></tr>
+      <tr><td>淨高</td><td>≥ 190 cm</td><td>頭頂淨空</td></tr>
+      <tr><td>扶手高</td><td>75-85 cm</td><td>兒童家庭可加雙扶手</td></tr>
+    </tbody>
+  </table>
+  <div class="disclaimer">
+    ⚠️ 商業空間、學校、公共建築規範不同、不在本表範圍。實際施作以建管申請與專業技師意見為準。
+  </div>
+
+  <h2>計算範例</h2>
+  <p><strong>例</strong>:住家挑高樓梯、總高 280 cm、樓梯間水平投影長 360 cm</p>
+  <pre><code>級數估算 = 280 ÷ 17 = 16.47 → 取 16 級
+實際級高 = 280 ÷ 16 = 17.5 cm
+級深推算 = 360 ÷ (16-1) = 24 cm(最後一級接平台)
+2R+T = 2 × 17.5 + 24 = 59 cm(略低於 60、踏起來會稍緊、可考慮增加水平距離到 380cm 改 27cm 級深)</code></pre>
+
+  <h2>對應 iOS app</h2>
+  <p><strong>StairCalc</strong>(樓梯計算機)— App Store 可下載。</p>
+</BaseLayout>

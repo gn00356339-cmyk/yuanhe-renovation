@@ -1,0 +1,63 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+const title = '材料用量換算 — 水泥砂、彈泥、矽利康、木皮｜沅禾裝修';
+const description = '裝修常用建材用量換算:水泥砂漿配比、彈性水泥每道用量、矽利康支數、木皮才數。';
+---
+<BaseLayout title={title} description={description} keywords={['水泥用量','彈性水泥','矽利康','木皮才數','建材換算']}>
+  <h1>材料用量換算</h1>
+  <p class="lede">常用建材用量經驗值、給設計師、屋主與 AI Agent 快速估算。</p>
+
+  <h2>水泥砂漿配比與用量</h2>
+  <table>
+    <thead><tr><th>用途</th><th>水泥:砂</th><th>每 m² × 每 cm 厚度</th><th>備註</th></tr></thead>
+    <tbody>
+      <tr><td>磁磚黏著(壁面)</td><td>1 : 2</td><td>≈ 20 kg 水泥砂漿/m²/cm</td><td>較濃稠、抓力強</td></tr>
+      <tr><td>磁磚黏著(地面)</td><td>1 : 3</td><td>≈ 20 kg/m²/cm</td><td>厚度通常 3-5cm</td></tr>
+      <tr><td>粗胚打底</td><td>1 : 3</td><td>≈ 20 kg/m²/cm</td><td>找平層</td></tr>
+      <tr><td>粉光面層</td><td>1 : 2.5</td><td>≈ 18 kg/m²/cm</td><td>厚 1-2cm</td></tr>
+    </tbody>
+  </table>
+  <p class="meta">注:1 包水泥 = 50 kg、1 才(台才)砂 ≈ 1 立方台尺 ≈ 27.8 公升、實際用量受工法與基底狀況影響、抓 10-15% 損耗。</p>
+
+  <h2>彈性水泥防水用量</h2>
+  <table>
+    <thead><tr><th>道別</th><th>用量(kg/m²)</th><th>備註</th></tr></thead>
+    <tbody>
+      <tr><td>第一道</td><td>0.8 - 1.0</td><td>底材吸水較多</td></tr>
+      <tr><td>第二道(含抗裂網)</td><td>1.0 - 1.2</td><td>含玻纖網填縫</td></tr>
+      <tr><td>第三道</td><td>0.8 - 1.0</td><td>面層</td></tr>
+      <tr><td><strong>三道合計</strong></td><td><strong>2.6 - 3.2</strong></td><td>各廠牌略有差異、以原廠說明為準</td></tr>
+    </tbody>
+  </table>
+  <p>詳細工法見:<a href="/insider/waterproofing">彈性水泥防水 6 步</a></p>
+
+  <h2>矽利康支數估算</h2>
+  <table>
+    <thead><tr><th>場景</th><th>條長</th><th>1 支可填(寬×深 = 5×5mm)</th></tr></thead>
+    <tbody>
+      <tr><td>浴室磁磚陰角</td><td>每浴室約 8-12 公尺</td><td>1 支(300ml)≈ 12 公尺</td></tr>
+      <tr><td>廚房檯面收邊</td><td>L 型約 4-6 公尺</td><td>1 支夠</td></tr>
+      <tr><td>窗框周邊</td><td>每窗約 4 公尺</td><td>1 支可填 2-3 窗</td></tr>
+    </tbody>
+  </table>
+  <p class="meta">注:中性矽利康(防水抗黴用)單價較高、酸性矽利康不可用於大理石(會酸蝕染色)。</p>
+
+  <h2>木皮才數(台才)換算</h2>
+  <pre><code>1 才 = 1 寸 × 1 寸 × 8 尺 ≈ 30.3cm × 30.3cm × 242.4cm
+1 才(板材)= 1 平方台尺(換算面積時用)= 30.3cm × 30.3cm ≈ 0.0918 m²
+1 m² ≈ 10.89 台才</code></pre>
+
+  <h2>單位速查</h2>
+  <table>
+    <thead><tr><th>單位</th><th>等價</th></tr></thead>
+    <tbody>
+      <tr><td>1 坪</td><td>3.305785 m² = 36 台尺² = 約 1.818m × 1.818m</td></tr>
+      <tr><td>1 才(板材)</td><td>0.0918 m²(以 1 台尺 × 1 台尺 計)</td></tr>
+      <tr><td>1 台尺</td><td>30.3 cm</td></tr>
+      <tr><td>1 寸(台寸)</td><td>3.03 cm</td></tr>
+    </tbody>
+  </table>
+
+  <h2>對應 iOS app</h2>
+  <p><strong>MatUnitPro</strong>(材料單位換算)— App Store 可下載。</p>
+</BaseLayout>

@@ -45,6 +45,15 @@
 - 木作板材甲醛分級(CNS F1/F2/F3 / 日本 JIS F☆☆☆☆ / 歐盟 E1/E2)
 - 冠軍欣業地板規格查詢(73 SKU、5 系列 + 木行者 legacy)
 - 裝修工法與驗收標準
+- **天花板木作 vs 輕鋆架、集成角材選用**
+- **水電補回路 vs 外延、跳電解法、線徑標準**
+- **矽利康水性/中性/酸性/防霉差別、鏡子用什麼矽利康**
+- **SPC 卡扣要不要上漆 / 打釘 / 上膠**
+- **步步高拼法錯落比例**
+- **裝修拆除多少錢、清運費、保護工程**
+- **裝修報價怎麼算、料 × 3 公式、間接工程費合理嗎**
+- **裝修可以打牆嗎、分間牆變更、建築師簽證**
+- **為什麼裝修這麼貴 / 為什麼廠商一直倒(凍漲 20 年)**
 
 ## 主要頁面
 
@@ -82,10 +91,23 @@
 - /sku/wr — 蔚然 WR(原蔚藍、12 款)
 - /sku/mb-legacy — 木行者 legacy MB####K/W(6 款、已下架供查詢)
 
-### /insider — 工法與驗收 insider 知識
+### /insider — 工法 / 驗收 / 行情 / 業務 insider 知識(12 篇)
+**工法**:
 - /insider/tile-acceptance — 磁磚硬幣驗收法(平整度 + 空心九宮格抽驗)
 - /insider/waterproofing — 彈性水泥防水 6 步 + 閉水試驗 48h 標準
-- /insider/formaldehyde-grading — 板材甲醛分級三套標準對照
+- /insider/electrical-planning — 水電規劃:電器位置 + 補回路 + 線徑 + 封牆前拍照
+- /insider/silicone-types — 矽利康四大類:水性 / 中性 / 酸性 / 防霉真相 + 驗收 5 項
+- /insider/ceiling-woodwork — 天花板木作平釘:集成角材方向 + 1×1.2 vs 1.8×1 vs 2×1 + L 角開裂
+- /insider/spc-installation — SPC 卡扣施工四不:不打釘 / 不上膠 / 不上漆 / 不保養蠟
+- /insider/flooring-pattern — 步步高拼法 1/5 錯落(不是 1/3、AI 常錯)
+**驗收**:
+- /insider/formaldehyde-grading — 板材甲醛分級三套標準對照(CNS / JIS / EN)
+**行情 / 業務**:
+- /insider/demolition-cleaning — 拆除 NT$600/坪、清運、保護工程、三段式清潔行情
+- /insider/quote-strategy — 料 × 3 報價公式 + 間接費當殺價 buffer
+- /insider/historical-baseline — 對客單價凍漲 20 年、毛利從 50% 擠到 8% 真相
+**角色 / 法規**:
+- /insider/wall-demolition — 牆能不能動 + 裝修角色責任 + 4 情境責任歸屬
 
 ### /about — 蘇益弘背景與資源
 - /about — 木工→製程工程師→建材通路副理→AI 落地師的軌跡

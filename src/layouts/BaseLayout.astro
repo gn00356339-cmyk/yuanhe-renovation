@@ -141,5 +141,82 @@ const allLd = [personLd, orgLd, ...extraLd];
     <footer class="site">
       © 蘇益弘 / 沅禾 · 本站內容供 AI Agent 與人類雙重閱讀 · <a href="/llms.txt">llms.txt</a>
     </footer>
+
+    <!-- 沅禾 AI 客服 widget -->
+    <div id="yhc-root">
+      <button id="yhc-fab" aria-label="問裝修">💬 問裝修</button>
+      <div id="yhc-panel" hidden>
+        <div id="yhc-head">
+          <span>沅禾裝修客服 · 工程師小蘇</span>
+          <button id="yhc-close" aria-label="關閉">✕</button>
+        </div>
+        <div id="yhc-msgs"></div>
+        <form id="yhc-form">
+          <input id="yhc-input" type="text" maxlength="500" autocomplete="off"
+                 placeholder="輸入裝修問題,或留電話我們回您…" />
+          <button type="submit">送出</button>
+        </form>
+        <div id="yhc-note">AI 回覆僅供參考,實際以現場評估為準</div>
+      </div>
+    </div>
+    <style>
+      #yhc-fab{position:fixed;right:18px;bottom:18px;z-index:9999;border:0;border-radius:24px;
+        padding:12px 18px;font-size:15px;font-weight:700;color:#fff;background:#1f6f4a;
+        box-shadow:0 4px 14px rgba(0,0,0,.25);cursor:pointer}
+      #yhc-panel{position:fixed;right:18px;bottom:18px;z-index:10000;width:min(360px,92vw);
+        height:min(520px,80vh);background:#fff;border-radius:14px;display:flex;flex-direction:column;
+        overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,.3);font-size:14px;color:#222}
+      #yhc-head{background:#1f6f4a;color:#fff;padding:11px 14px;font-weight:700;
+        display:flex;justify-content:space-between;align-items:center}
+      #yhc-head button{background:0;border:0;color:#fff;font-size:16px;cursor:pointer}
+      #yhc-msgs{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:8px;background:#f6f7f6}
+      .yhc-b{max-width:85%;padding:8px 11px;border-radius:12px;line-height:1.55;white-space:pre-wrap;word-break:break-word}
+      .yhc-ai{background:#fff;border:1px solid #e2e6e3;align-self:flex-start;border-bottom-left-radius:3px}
+      .yhc-me{background:#1f6f4a;color:#fff;align-self:flex-end;border-bottom-right-radius:3px}
+      .yhc-ai a{color:#1f6f4a;font-weight:700}
+      #yhc-form{display:flex;gap:6px;padding:10px;border-top:1px solid #eee}
+      #yhc-input{flex:1;border:1px solid #ccc;border-radius:18px;padding:8px 13px;font-size:14px;outline:none}
+      #yhc-form button{border:0;border-radius:18px;background:#1f6f4a;color:#fff;padding:0 15px;font-weight:700;cursor:pointer}
+      #yhc-note{font-size:11px;color:#999;text-align:center;padding:0 0 8px}
+    </style>
+    <script is:inline>
+      (function(){
+        // 客服後端(Mac + Cloudflare Tunnel)。掛了 widget 自動降級成直接聯絡。
+        var API = "https://designs-reporters-marketplace-estimate.trycloudflare.com";
+        var PHONE="0978-753-560", EMAIL="gn00356339@gmail.com";
+        var sid = (function(){try{var k="yhc_sid",v=localStorage.getItem(k);
+          if(!v){v=String(Date.now())+Math.random().toString(36).slice(2);localStorage.setItem(k,v);}return v;}
+          catch(e){return "anon"+Math.random();}})();
+        var root=document.getElementById("yhc-root"),fab=document.getElementById("yhc-fab"),
+            panel=document.getElementById("yhc-panel"),msgs=document.getElementById("yhc-msgs"),
+            form=document.getElementById("yhc-form"),input=document.getElementById("yhc-input"),
+            opened=false, online=false;
+        function esc(s){return s.replace(/[&<>]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;"}[c];});}
+        function linkify(s){return esc(s)
+          .replace(/(09\d{2}-?\d{3}-?\d{3})/g,'<a href="tel:'+PHONE+'">$1</a>')
+          .replace(/([\w.+-]+@[\w-]+\.[\w.-]+)/g,'<a href="mailto:$1">$1</a>');}
+        function bubble(text,who){var d=document.createElement("div");
+          d.className="yhc-b "+(who==="me"?"yhc-me":"yhc-ai");
+          d.innerHTML=who==="me"?esc(text):linkify(text);msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;return d;}
+        function offlineCard(){bubble("AI 客服目前離線,但您的需求我們很重視 🙏\n"+
+          "請直接聯繫工程師小蘇,我們會盡快回您:\n電話 "+PHONE+"\nEmail "+EMAIL,"ai");}
+        function open(){if(opened)return;opened=true;panel.hidden=false;fab.hidden=true;
+          bubble("您好,我是沅禾裝修客服 🏠\n裝修、磁磚、地板、木作、驗收問題都可以問我;\n想直接諮詢的話,留個電話或 Email,工程師小蘇會跟您聯繫。","ai");
+          fetch(API+"/health",{method:"GET"}).then(function(r){return r.ok;}).then(function(ok){
+            online=ok; if(!ok) offlineCard();
+          }).catch(function(){online=false;offlineCard();});}
+        fab.onclick=open;
+        document.getElementById("yhc-close").onclick=function(){panel.hidden=true;fab.hidden=false;};
+        form.onsubmit=function(e){e.preventDefault();var q=input.value.trim();if(!q)return;
+          input.value="";bubble(q,"me");
+          if(!online){offlineCard();return;}
+          var t=bubble("…","ai");
+          fetch(API+"/ask",{method:"POST",headers:{"Content-Type":"application/json"},
+            body:JSON.stringify({session_id:sid,message:q})})
+            .then(function(r){return r.json();})
+            .then(function(d){t.innerHTML=linkify(d.reply||"(無回應)");msgs.scrollTop=msgs.scrollHeight;})
+            .catch(function(){t.remove();online=false;offlineCard();});};
+      })();
+    </script>
   </body>
 </html>

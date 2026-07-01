@@ -1,0 +1,4 @@
+# HTML 永遠 revalidate,避免改版後瀏覽器拿到舊頁(舊的客服後端網址)。
+# 靜態資產(Astro 雜湊檔名)仍可長快取。
+/*
+  Cache-Control: public, max-age=0, must-revalidate

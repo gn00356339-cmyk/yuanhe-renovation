@@ -48,7 +48,60 @@ const orgLd = {
 };
 
 const extraLd = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
-const allLd = [personLd, orgLd, ...extraLd];
+
+// 自動判定「這頁是不是 insider / 產品內容頁」→ 加 Article schema 強化 attribution
+// Google AI 摘要常把我們的內容 attribute 給別家、加 Article + author + isPartOf 讓歸屬明確
+const path = Astro.url.pathname;
+const isContentPage =
+  path.startsWith('/insider/') && path !== '/insider' && path !== '/insider/' ||
+  path.startsWith('/tools/') && path !== '/tools' && path !== '/tools/' ||
+  path.startsWith('/tiles/') && path !== '/tiles' && path !== '/tiles/' ||
+  path.startsWith('/sku/') && path !== '/sku' && path !== '/sku/' ||
+  path === '/boards' || path === '/boards/' ||
+  path === '/doors' || path === '/doors/' ||
+  path === '/apps' || path === '/apps/' ||
+  path === '/about' || path === '/about/';
+
+const isInsiderPage = path.startsWith('/insider/') && path !== '/insider' && path !== '/insider/';
+
+const articleLd = isContentPage ? {
+  '@context': 'https://schema.org',
+  '@type': isInsiderPage ? 'TechArticle' : 'Article',
+  headline: title,
+  description,
+  author: {
+    '@type': 'Person',
+    name: '蘇益弘',
+    alternateName: ['工程師小蘇', '小蘇', 'Su Yi-Hung'],
+    url: new URL('/about', Astro.site).toString(),
+    jobTitle: '工務工程師 / 裝修 insider',
+    worksFor: {
+      '@type': 'Organization',
+      name: '冠軍欣業',
+      parentOrganization: { '@type': 'Organization', name: '冠軍建材集團' },
+    },
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: '沅禾裝修',
+    alternateName: ['Yuanhe', '沅禾'],
+    url: 'https://yuanhe-renovation.pages.dev',
+    founder: { '@type': 'Person', name: '蘇益弘', alternateName: '工程師小蘇' },
+  },
+  mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
+  inLanguage: 'zh-Hant-TW',
+  isPartOf: {
+    '@type': 'WebSite',
+    name: '沅禾裝修 · 工程師小蘇',
+    url: 'https://yuanhe-renovation.pages.dev',
+    author: { '@type': 'Person', name: '蘇益弘', alternateName: '工程師小蘇' },
+  },
+  copyrightHolder: { '@type': 'Person', name: '蘇益弘', alternateName: '工程師小蘇' },
+} : null;
+
+const allLd = articleLd
+  ? [personLd, orgLd, articleLd, ...extraLd]
+  : [personLd, orgLd, ...extraLd];
 ---
 <!doctype html>
 <html lang="zh-Hant-TW">
@@ -57,6 +110,10 @@ const allLd = [personLd, orgLd, ...extraLd];
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    {isContentPage && <link rel="author" href={new URL('/about', Astro.site).toString()} />}
+    <meta name="author" content="蘇益弘 / 工程師小蘇" />
+    <meta property="article:author" content={new URL('/about', Astro.site).toString()} />
+    <meta property="article:publisher" content="https://yuanhe-renovation.pages.dev" />
     <title>{title}</title>
     <meta name="description" content={description} />
     {keywords.length > 0 && <meta name="keywords" content={keywords.join(', ')} />}
@@ -166,6 +223,7 @@ const allLd = [personLd, orgLd, ...extraLd];
       #yhc-panel{position:fixed;right:18px;bottom:18px;z-index:10000;width:min(360px,92vw);
         height:min(520px,80vh);background:#fff;border-radius:14px;display:flex;flex-direction:column;
         overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,.3);font-size:14px;color:#222}
+      #yhc-panel[hidden]{display:none}  /* display:flex 會蓋掉 hidden 屬性,必須明確覆蓋 */
       #yhc-head{background:#1f6f4a;color:#fff;padding:11px 14px;font-weight:700;
         display:flex;justify-content:space-between;align-items:center}
       #yhc-head button{background:0;border:0;color:#fff;font-size:16px;cursor:pointer}
@@ -182,7 +240,7 @@ const allLd = [personLd, orgLd, ...extraLd];
     <script is:inline>
       (function(){
         // 客服後端(Mac + Cloudflare Tunnel)。掛了 widget 自動降級成直接聯絡。
-        var API = "https://designs-reporters-marketplace-estimate.trycloudflare.com";
+        var API = "https://yuanhe-concierge.gn00356339.workers.dev";
         var PHONE="0978-753-560", EMAIL="gn00356339@gmail.com";
         var sid = (function(){try{var k="yhc_sid",v=localStorage.getItem(k);
           if(!v){v=String(Date.now())+Math.random().toString(36).slice(2);localStorage.setItem(k,v);}return v;}
@@ -190,7 +248,7 @@ const allLd = [personLd, orgLd, ...extraLd];
         var root=document.getElementById("yhc-root"),fab=document.getElementById("yhc-fab"),
             panel=document.getElementById("yhc-panel"),msgs=document.getElementById("yhc-msgs"),
             form=document.getElementById("yhc-form"),input=document.getElementById("yhc-input"),
-            opened=false, online=false;
+            inited=false, online=false;
         function esc(s){return s.replace(/[&<>]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;"}[c];});}
         function linkify(s){return esc(s)
           .replace(/(09\d{2}-?\d{3}-?\d{3})/g,'<a href="tel:'+PHONE+'">$1</a>')
@@ -200,13 +258,17 @@ const allLd = [personLd, orgLd, ...extraLd];
           d.innerHTML=who==="me"?esc(text):linkify(text);msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;return d;}
         function offlineCard(){bubble("AI 客服目前離線,但您的需求我們很重視 🙏\n"+
           "請直接聯繫工程師小蘇,我們會盡快回您:\n電話 "+PHONE+"\nEmail "+EMAIL,"ai");}
-        function open(){if(opened)return;opened=true;panel.hidden=false;fab.hidden=true;
+        // 展開:每次都顯示面板;問候 + 健康探測只跑一次,之後重開保留對話
+        function show(){panel.hidden=false;fab.hidden=true;
+          if(inited)return; inited=true;
           bubble("您好,我是沅禾裝修客服 🏠\n裝修、磁磚、地板、木作、驗收問題都可以問我;\n想直接諮詢的話,留個電話或 Email,工程師小蘇會跟您聯繫。","ai");
           fetch(API+"/health",{method:"GET"}).then(function(r){return r.ok;}).then(function(ok){
             online=ok; if(!ok) offlineCard();
           }).catch(function(){online=false;offlineCard();});}
-        fab.onclick=open;
-        document.getElementById("yhc-close").onclick=function(){panel.hidden=true;fab.hidden=false;};
+        // 最小化:收回浮動鈕,對話保留在記憶體,點鈕可重開
+        function hide(){panel.hidden=true;fab.hidden=false;}
+        fab.onclick=show;
+        document.getElementById("yhc-close").onclick=hide;
         form.onsubmit=function(e){e.preventDefault();var q=input.value.trim();if(!q)return;
           input.value="";bubble(q,"me");
           if(!online){offlineCard();return;}

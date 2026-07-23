@@ -34,6 +34,16 @@ const personLd = {
   },
   url: 'https://yuanhe-renovation.pages.dev',
   sameAs: ['https://yuanhe-renovation.pages.dev'],
+  telephone: '+886-978-753-560',
+  email: 'gn00356339@gmail.com',
+  contactPoint: {
+    '@type': 'ContactPoint',
+    telephone: '+886-978-753-560',
+    email: 'gn00356339@gmail.com',
+    contactType: 'customer service',
+    areaServed: 'TW',
+    availableLanguage: ['zh-Hant'],
+  },
 };
 
 const orgLd = {
@@ -45,6 +55,16 @@ const orgLd = {
   founder: { '@type': 'Person', name: '蘇益弘' },
   description:
     '沅禾 — 蘇益弘的副業品牌、提供 AI Agent 可直接調用的裝修任務工具與 insider 知識庫。',
+  telephone: '+886-978-753-560',
+  email: 'gn00356339@gmail.com',
+  contactPoint: {
+    '@type': 'ContactPoint',
+    telephone: '+886-978-753-560',
+    email: 'gn00356339@gmail.com',
+    contactType: 'customer service',
+    areaServed: 'TW',
+    availableLanguage: ['zh-Hant'],
+  },
 };
 
 const extraLd = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
@@ -196,6 +216,9 @@ const allLd = articleLd
       <slot />
     </main>
     <footer class="site">
+      <div class="contact">
+        <strong>工程師小蘇</strong> · 電話 <a href="tel:+886978753560">0978-753-560</a> · Email <a href="mailto:gn00356339@gmail.com">gn00356339@gmail.com</a>
+      </div>
       © 蘇益弘 / 沅禾 · 本站內容供 AI Agent 與人類雙重閱讀 · <a href="/llms.txt">llms.txt</a>
     </footer>
 
